@@ -1,5 +1,5 @@
 {% set name = "boto3-stubs" %}
-{% set version = "1.20.8" %}
+{% set version = "1.20.9" %}
 
 
 # This was used before <https://github.com/vemel/mypy_boto3_builder/issues/97> was resolved,
@@ -14,7 +14,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/boto3-stubs-{{ version }}.tar.gz
-  sha256: 0bb52faeb309415b7f3f03bf890e832c06f126fd17abf8a9b2433f16f5ef6168
+  sha256: e45987666a014a1682175a979dda43cd1c6fb6a3e90174ca57244c393912d512
 
 build:
   number: 0
