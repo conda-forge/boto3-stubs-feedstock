@@ -1,6 +1,9 @@
 {% set name = "boto3-stubs" %}
-{% set version = "1.20.6" %}
+{% set version = "1.20.8" %}
 
+
+# This was used before <https://github.com/vemel/mypy_boto3_builder/issues/97> was resolved,
+# but is no longer needed.
 {% set version_minus_five = ".".join(version.split(".")[:-1] + [
     [0, (version.split(".")[-1]|int) - 5] | max | string
 ]) %}
@@ -11,7 +14,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/boto3-stubs-{{ version }}.tar.gz
-  sha256: b57e8b903b511d6fb1d63e7f2265491f8cd7952acddbd4e95096f5ad5cffbae4
+  sha256: 0bb52faeb309415b7f3f03bf890e832c06f126fd17abf8a9b2433f16f5ef6168
 
 build:
   number: 0
@@ -49,14 +52,17 @@ outputs:
       noarch: python
     requirements:
       run:
+        # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
+        # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#pinning-at-the-recipe-level>
         - {{ pin_subpackage(name, exact=True) }}
-        - mypy_boto3_cloudformation >={{ version_minus_five }}
-        - mypy_boto3_dynamodb >={{ version_minus_five }}
-        - mypy_boto3_ec2 >={{ version_minus_five }}
-        - mypy_boto3_lambda >={{ version_minus_five }}
-        - mypy_boto3_rds >={{ version_minus_five }}
-        - mypy-boto3-s3 >={{ version_minus_five }}
-        - mypy_boto3_sqs >={{ version_minus_five }}
+        # For the dependencies, use the pin >=MAJOR.MINOR
+        - {{ pin_compatible('mypy_boto3_cloudformation', min_pin='x.x') }}
+        - {{ pin_compatible('mypy_boto3_dynamodb', min_pin='x.x') }}
+        - {{ pin_compatible('mypy_boto3_ec2', min_pin='x.x') }}
+        - {{ pin_compatible('mypy_boto3_lambda', min_pin='x.x') }}
+        - {{ pin_compatible('mypy_boto3_rds', min_pin='x.x') }}
+        - {{ pin_compatible('mypy-boto3-s3', min_pin='x.x') }}
+        - {{ pin_compatible('mypy_boto3_sqs', min_pin='x.x') }}
     test:
       script: test_essential.py
       imports:
