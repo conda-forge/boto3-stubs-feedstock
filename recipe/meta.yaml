@@ -1,11 +1,12 @@
 {% set name = "boto3-stubs" %}
 {% set version = "1.20.8" %}
 
-# This was used before <https://github.com/vemel/mypy_boto3_builder/issues/97> was resolved:
 
-# {% set version_minus_five = ".".join(version.split(".")[:-1] + [
-#     [0, (version.split(".")[-1]|int) - 5] | max | string
-# ]) %}
+# This was used before <https://github.com/vemel/mypy_boto3_builder/issues/97> was resolved,
+# but is no longer needed.
+{% set version_minus_five = ".".join(version.split(".")[:-1] + [
+    [0, (version.split(".")[-1]|int) - 5] | max | string
+]) %}
 
 package:
   name: {{ name|lower }}
