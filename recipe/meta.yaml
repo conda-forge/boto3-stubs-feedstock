@@ -54,7 +54,8 @@ outputs:
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#pinning-at-the-recipe-level>
         - {{ pin_subpackage(name, exact=True) }}
-        - {{ pin_compatible('mypy_boto3_cloudformation', min_pin='x.x') }}  # >=MAJOR.MINOR
+        # For the dependencies, use the pin >=MAJOR.MINOR
+        - {{ pin_compatible('mypy_boto3_cloudformation', min_pin='x.x') }}
         - {{ pin_compatible('mypy_boto3_dynamodb', min_pin='x.x') }}
         - {{ pin_compatible('mypy_boto3_ec2', min_pin='x.x') }}
         - {{ pin_compatible('mypy_boto3_lambda', min_pin='x.x') }}
