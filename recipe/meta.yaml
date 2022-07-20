@@ -29,6 +29,7 @@ requirements:
     # Note: botocore is also an implicit dependency via mypy_boto3_* → boto3 → botocore,
     # so the following line is redundant.
     - botocore
+    - types-s3transfer
 
 outputs:
   - name: boto3-stubs
