@@ -11,12 +11,13 @@ source:
   sha256: a37e9e587880f19329bed0af8e9732eba9c1d49d40f99ada9c8692888776e777
 
 build:
-  number: 0
+  number: 1
   noarch: python
 requirements:
   host:
     - pip
     - python >=3.6
+    - setuptools
   run:
     - python >=3.6
 
