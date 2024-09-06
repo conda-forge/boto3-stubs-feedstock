@@ -3,7 +3,7 @@
 from mypy_boto3_builder.service_name import ServiceName
 from pkg_resources import require
 
-essential_service_names = ServiceName.ESSENTIAL
+essential_service_names = ServiceName.ESSENTIAL_NAMES
 
 for name in essential_service_names:
     res = require("mypy_boto3_" + name)
