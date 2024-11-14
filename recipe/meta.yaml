@@ -72,7 +72,6 @@ outputs:
       requires:
         - pip
         - mypy_boto3_builder
-        - setuptools
         - python {{ python_min }}
 
 about:
