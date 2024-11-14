@@ -73,6 +73,9 @@ outputs:
         - pip
         - mypy_boto3_builder
         - python {{ python_min }}
+        # ensure pip check works due to lower version of mypy_boto3_builder
+        - {{ pin_compatible('black', min_pin='x.x') }}
+        - {{ pin_compatible('pyparsing', min_pin='x.x') }}
 
 about:
   home: https://github.com/vemel/mypy_boto3_builder
