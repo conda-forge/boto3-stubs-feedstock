@@ -7,7 +7,7 @@ Home: https://github.com/vemel/mypy_boto3_builder
 
 Package license: MIT
 
-Summary: Type annotations for boto3 1.36.6, generated with mypy-boto3-builder
+Summary: Type annotations for boto3 1.36.7, generated with mypy-boto3-builder
 
 Development: https://github.com/vemel/mypy_boto3_builder
 
