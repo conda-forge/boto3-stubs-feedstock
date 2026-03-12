@@ -72,10 +72,8 @@ outputs:
       requires:
         - pip
         - mypy_boto3_builder
-        - python {{ python_min }}
-        # ensure pip check works due to lower version of mypy_boto3_builder
-        - black <22.0,>=21.9b0
-        - pyparsing <3.0.0,>=2.4.7
+        # Need to use a newer python here as newer mypy_boto3_builder versions don't work with
+        - python 3.12
 
 about:
   home: https://github.com/vemel/mypy_boto3_builder
