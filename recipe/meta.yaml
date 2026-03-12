@@ -1,5 +1,5 @@
 {% set name = "boto3-stubs" %}
-{% set version = "1.40.13" %}
+{% set version = "1.42.65" %}
 {% set lib_version = version.split(".post")[0] %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 4a665589e9e4bedf8f4a107ba6f964c6fef3cab3cc63a3c46a21b8bec369002a
+  sha256: 013bcb1f03bf8689d53ef24c2da5ce430a3a298813fdfc24ea81caca937952c1
 
 build:
   number: 0
@@ -24,7 +24,12 @@ requirements:
 outputs:
   - name: boto3-stubs
     requirements:
+      host:
+        - pip
+        - python {{ python_min }}
+        - setuptools
       run:
+        - python >={{ python_min }}
         - botocore-stubs
         - types-s3transfer
         - typing-extensions >=4.1.0
@@ -45,7 +50,12 @@ outputs:
     build:
       noarch: python
     requirements:
+      host:
+        - pip
+        - python {{ python_min }}
+        - setuptools
       run:
+        - python >={{ python_min }}
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#pinning-at-the-recipe-level>
         - {{ pin_subpackage(name, exact=True) }}
@@ -72,10 +82,8 @@ outputs:
       requires:
         - pip
         - mypy_boto3_builder
-        - python {{ python_min }}
-        # ensure pip check works due to lower version of mypy_boto3_builder
-        - black <22.0,>=21.9b0
-        - pyparsing <3.0.0,>=2.4.7
+        # Need to use a newer python here as newer mypy_boto3_builder versions don't work with
+        - python 3.12
 
 about:
   home: https://github.com/vemel/mypy_boto3_builder
