@@ -24,7 +24,12 @@ requirements:
 outputs:
   - name: boto3-stubs
     requirements:
+      host:
+        - pip
+        - python {{ python_min }}
+        - setuptools
       run:
+        - python >={{ python_min }}
         - botocore-stubs
         - types-s3transfer
         - typing-extensions >=4.1.0
@@ -45,7 +50,12 @@ outputs:
     build:
       noarch: python
     requirements:
+      host:
+        - pip
+        - python {{ python_min }}
+        - setuptools
       run:
+        - python >={{ python_min }}
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#pinning-at-the-recipe-level>
         - {{ pin_subpackage(name, exact=True) }}
