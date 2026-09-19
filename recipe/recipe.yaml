@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: boto3-stubs
   version: "1.43.98"
-  lib_version: ${{ version.split(".post")[0] }}
+  lib_version: ${{ version | split(".post")[0] }}
 
 recipe:
   name: ${{ name|lower }}
