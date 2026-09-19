@@ -85,6 +85,10 @@ outputs:
             - ${{ python_min }}.*
             - "*"
       - script: test_essential.py
+        requirements:
+          run:
+            - mypy_boto3_builder
+
 
 about:
   summary: Type annotations for boto3 ${{ lib_version }}, generated with mypy-boto3-builder
