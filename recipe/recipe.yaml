@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: boto3-stubs
   version: "1.43.98"
-  lib_version: ${{ version | split(".post")[0] }}
+  lib_version: "${{ version | split('.post') | list | first }}"
 
 recipe:
   name: ${{ name|lower }}
@@ -14,7 +14,7 @@ source:
   sha256: 43b3b183b55a2ef17780da65fd7fb66456cb76727181a4edecde104053c06152
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 outputs:
