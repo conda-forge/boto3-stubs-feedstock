@@ -1,0 +1,105 @@
+schema_version: 1
+
+context:
+  name: boto3-stubs
+  version: "1.43.98"
+  lib_version: "${{ version | split('.post') | list | first }}"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 43b3b183b55a2ef17780da65fd7fb66456cb76727181a4edecde104053c06152
+
+build:
+  number: 1
+  noarch: python
+
+outputs:
+  - package:
+      name: boto3-stubs
+    build:
+      noarch: python
+      script:
+        - python -m pip install . -vv
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+        - botocore-stubs
+        - types-s3transfer
+        - typing-extensions >=4.1.0
+    tests:
+      - script:
+          - pip check
+        requirements:
+          run:
+            - pip
+            - python ${{ python_min }}.*
+  - package:
+      name: boto3-stubs-essential
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+        - mypy_boto3_cloudformation
+        - mypy_boto3_dynamodb
+        - mypy_boto3_ec2
+        - mypy_boto3_lambda
+        - mypy_boto3_rds
+        - mypy-boto3-s3
+        - mypy_boto3_sqs
+      run:
+        - python >=${{ python_min }}
+        # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
+        # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#pinning-at-the-recipe-level>
+        - ${{ pin_subpackage(name, exact=True) }}
+        # For the dependencies, use the pin >=MAJOR.MINOR
+        - ${{ pin_compatible('mypy_boto3_cloudformation', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy_boto3_dynamodb', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy_boto3_ec2', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy_boto3_lambda', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy_boto3_rds', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy-boto3-s3', lower_bound='x.x') }}
+        - ${{ pin_compatible('mypy_boto3_sqs', lower_bound='x.x') }}
+    tests:
+      - python:
+          imports:
+            - mypy_boto3_cloudformation
+            - mypy_boto3_dynamodb
+            - mypy_boto3_ec2
+            - mypy_boto3_lambda
+            - mypy_boto3_rds
+            - mypy_boto3_s3
+            - mypy_boto3_sqs
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+      - script: test_essential.py
+        requirements:
+          run:
+            - mypy_boto3_builder
+
+
+about:
+  summary: Type annotations for boto3 ${{ lib_version }}, generated with mypy-boto3-builder
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/vemel/mypy_boto3_builder
+  repository: https://github.com/vemel/mypy_boto3_builder
+  documentation: https://youtype.github.io/boto3_stubs_docs/
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - thewchan
+    - vemel
