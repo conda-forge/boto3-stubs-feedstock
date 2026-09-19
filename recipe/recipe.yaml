@@ -50,6 +50,13 @@ outputs:
         - pip
         - python ${{ python_min }}.*
         - setuptools
+        - mypy_boto3_cloudformation
+        - mypy_boto3_dynamodb
+        - mypy_boto3_ec2
+        - mypy_boto3_lambda
+        - mypy_boto3_rds
+        - mypy-boto3-s3
+        - mypy_boto3_sqs
       run:
         - python >=${{ python_min }}
         # <https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#extra-jinja2-functions>
@@ -74,7 +81,9 @@ outputs:
             - mypy_boto3_s3
             - mypy_boto3_sqs
           pip_check: true
-          python_version: "3.12"
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - script: test_essential.py
 
 about:
