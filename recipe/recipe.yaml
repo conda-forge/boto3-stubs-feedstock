@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: boto3-stubs
-  version: "1.43.110"
+  version: "1.43.111"
   lib_version: "${{ version | split('.post') | list | first }}"
 
 recipe:
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://files.pythonhosted.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
-  sha256: 566a1938c158c438b65b1187b195891dcc314569d64e4d59c51dc18ac8d38ca5
+  sha256: 3260967ca240bfdc169d8d48350e5b24cce2c84bc11f4c7f4ccb3955ed908707
 
 build:
   number: 0
